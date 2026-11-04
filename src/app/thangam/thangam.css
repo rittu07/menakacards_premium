@@ -1,5 +1,7 @@
 /* Thangam's own look: linen paper, layered florals and warm gold. */
 .thangam {
+  --font-thangam-tamil: var(--font-thangam-tamil-letters), var(--font-thangam-tamil-latin);
+
   --ivory: #fff6ec;
   --peach: #f7d9c9;
   --burgundy: #8d1231;
