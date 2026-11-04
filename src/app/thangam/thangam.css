@@ -1,0 +1,319 @@
+/* Thangam's own look: linen paper, layered florals and warm gold. */
+.thangam {
+  --ivory: #fff6ec;
+  --peach: #f7d9c9;
+  --burgundy: #8d1231;
+  --rose: #d94b65;
+  --gold: #d7a13e;
+  --champagne: #e8c78d;
+  --ink: #4a1a22;
+  --gold-deep: #a97a22;
+
+  background-color: var(--ivory);
+  background-image: url("/thangam/linen.webp");
+  color: var(--ink);
+  font-family: var(--font-thangam-body), var(--font-thangam-tamil), serif;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+
+:root[lang="ta"] .thangam {
+  font-family: var(--font-thangam-tamil), var(--font-thangam-body), serif;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+:root[data-elder="on"] .thangam {
+  --gold-deep: #7d5913;
+  font-weight: 500;
+}
+
+:root[lang="ta"] .thangam .italic {
+  font-style: normal;
+}
+
+:root[lang="ta"] .thangam [class*="tracking-"] {
+  letter-spacing: 0.04em;
+}
+
+.thangam-paper {
+  background-image: url("/thangam/linen.webp");
+}
+
+.thangam-heading {
+  font-family: var(--font-thangam-heading), var(--font-thangam-tamil), serif;
+}
+
+:root[lang="ta"] .thangam-heading {
+  font-family: var(--font-thangam-tamil), serif;
+  font-weight: 600;
+}
+
+.thangam-names {
+  font-family: var(--font-thangam-script), cursive;
+  color: var(--burgundy);
+  line-height: 1.2;
+  word-spacing: 0.1em;
+}
+
+:root[lang="ta"] .thangam-names {
+  font-family: var(--font-thangam-tamil), serif;
+  font-weight: 700;
+  line-height: 1.4;
+  word-spacing: 0;
+}
+
+.thangam-tamil {
+  font-family: var(--font-thangam-tamil), serif;
+}
+
+/* Soft blush washes the corners of a section, like the premium card. */
+.thangam-blush {
+  background-color: #fdeee3;
+  background-image:
+    radial-gradient(120% 60% at 50% 0%, rgb(255 246 236 / 0.9), transparent 70%), url("/thangam/linen.webp");
+}
+
+.thangam-wine {
+  background-color: var(--burgundy);
+  background-image:
+    radial-gradient(90% 70% at 50% 0%, rgb(217 75 101 / 0.28), transparent 70%), url("/thangam/linen.webp");
+  color: var(--ivory);
+}
+
+/* The gold keyline used on cards. */
+.thangam-card {
+  background: rgb(255 250 243 / 0.92);
+  border: 1px solid var(--champagne);
+  box-shadow:
+    inset 0 0 0 3px var(--ivory),
+    inset 0 0 0 4px rgb(215 161 62 / 0.35),
+    0 10px 24px -14px rgb(101 15 36 / 0.35);
+}
+
+.thangam-press {
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease-out,
+    box-shadow 0.3s ease-out;
+}
+
+.thangam-press:active {
+  transform: scale(0.96);
+}
+
+.thangam-button {
+  background: linear-gradient(180deg, #a3173d, var(--burgundy));
+  box-shadow:
+    inset 0 0 0 1px var(--champagne),
+    0 8px 18px -10px rgb(101 15 36 / 0.7);
+  color: var(--ivory);
+}
+
+.thangam-button:hover {
+  background: linear-gradient(180deg, var(--burgundy), #6f0d26);
+}
+
+.thangam a:focus-visible,
+.thangam button:focus-visible,
+.thangam input:focus-visible {
+  outline: 2px solid var(--burgundy);
+  outline-offset: 2px;
+}
+
+.thangam-wine a:focus-visible,
+.thangam-wine button:focus-visible,
+.thangam-wine input:focus-visible {
+  outline-color: var(--champagne);
+}
+
+/* Petals and a few blossoms falling the length of the page. */
+.thangam-petal {
+  position: absolute;
+  top: -6%;
+  opacity: 0;
+  animation: thangam-fall var(--fall, 16s) linear var(--delay, 0s) infinite;
+  will-change: transform;
+}
+
+@keyframes thangam-fall {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate3d(-2.5rem, 52vh, 0) rotate(160deg);
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate3d(1.5rem, 112vh, 0) rotate(320deg);
+    opacity: 0;
+  }
+}
+
+/* Plays before the page's JavaScript arrives, so the loader never looks empty. */
+.thangam-enter {
+  animation: thangam-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0ms) both;
+}
+
+@keyframes thangam-enter {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+}
+
+/*
+ * The browser skips drawing whatever is well off screen, which also pauses its
+ * animations. This is what keeps a page this rich smooth on low-cost phones.
+ * The size is only a first guess for the scrollbar; real sizes replace it.
+ */
+.thangam-lazy {
+  content-visibility: auto;
+  contain-intrinsic-size: auto var(--lazy-size, 800px);
+}
+
+.thangam-lazy-vine {
+  --lazy-size: 60px;
+}
+
+/* Florals stir, each pivoting from its own corner. */
+.thangam-sway {
+  animation: thangam-sway 7s ease-in-out infinite alternate;
+}
+
+.thangam-sway-tl {
+  --sway: 1.6deg;
+  transform-origin: 0 0;
+}
+
+.thangam-sway-tr {
+  --sway: -1.6deg;
+  transform-origin: 100% 0;
+}
+
+.thangam-sway-bl {
+  --sway: -1.3deg;
+  transform-origin: 0 100%;
+}
+
+.thangam-sway-br {
+  --sway: 1.3deg;
+  transform-origin: 100% 100%;
+}
+
+@keyframes thangam-sway {
+  from {
+    transform: rotate(calc(var(--sway) * -1));
+  }
+  to {
+    transform: rotate(var(--sway));
+  }
+}
+
+.thangam-float {
+  animation: thangam-float 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes thangam-float {
+  from {
+    transform: translateY(-0.3rem) rotate(-0.4deg);
+  }
+  to {
+    transform: translateY(0.3rem) rotate(0.4deg);
+  }
+}
+
+.thangam-breathe {
+  animation: thangam-breathe 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes thangam-breathe {
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.thangam-spin {
+  animation: thangam-spin 90s linear infinite;
+}
+
+.thangam-spin-slow {
+  animation: thangam-spin 26s linear infinite;
+}
+
+@keyframes thangam-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* A photograph drifting very slowly closer. */
+.thangam-drift {
+  animation: thangam-drift 16s ease-in-out infinite alternate;
+}
+
+@keyframes thangam-drift {
+  to {
+    transform: scale(1.09);
+  }
+}
+
+.thangam-tap-ring {
+  animation: thangam-ring 1.8s ease-out infinite;
+}
+
+@keyframes thangam-ring {
+  from {
+    opacity: 0.7;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+/* Native swipe: smooth on every phone with no script running. */
+.thangam-swipe {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.thangam-swipe::-webkit-scrollbar {
+  display: none;
+}
+
+.thangam-swipe > * {
+  flex: none;
+  scroll-snap-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thangam-petal {
+    display: none;
+  }
+  .thangam-enter,
+  .thangam-tap-ring,
+  .thangam-sway,
+  .thangam-float,
+  .thangam-breathe,
+  .thangam-spin,
+  .thangam-spin-slow,
+  .thangam-drift {
+    animation: none;
+  }
+  .thangam-press,
+  .thangam-press:active {
+    transform: none;
+    transition: none;
+  }
+}

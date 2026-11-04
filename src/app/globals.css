@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+/* Tier palettes live on each tier's own root element, so tiers never share a look. */
+.pattu {
+  --ivory: #fff8f0;
+  --cream: #fcefe5;
+  --burgundy: #8e1832;
+  --wine: #650f24;
+  --rose: #e9a0a6;
+  --gold: #c99546;
+  --ink: #3b1d1c;
+
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-cormorant), var(--font-noto-tamil), serif;
+  font-size: 1.125rem;
+  font-variant-numeric: lining-nums;
+  line-height: 1.5;
+}
+
+:root[lang="ta"] .pattu {
+  font-family: var(--font-noto-tamil), var(--font-cormorant), sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* Tamil has no true italic; a browser's fake slant damages the letters. */
+:root[lang="ta"] .pattu .italic {
+  font-style: normal;
+}
+
+.pattu-names {
+  font-family: var(--font-great-vibes), cursive;
+  color: var(--burgundy);
+  line-height: 1.15;
+  word-spacing: 0.12em;
+}
+
+:root[lang="ta"] .pattu-names {
+  font-family: var(--font-noto-tamil), sans-serif;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+/* Elder mode: everything sized in rem grows together, and small print gets darker. */
+:root {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+:root[data-elder="on"] {
+  font-size: 125%;
+}
+
+:root[data-elder="on"] .pattu {
+  --gold: #9b6d24;
+  font-weight: 500;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .pattu-petal {
+    display: none;
+  }
+  .pattu-rise,
+  .pattu-corner,
+  .pattu-draw {
+    animation: none;
+  }
+  .pattu-press,
+  .pattu-press:active {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* The card frame: one thin gold line, with a hairline just inside it. */
+.pattu-frame {
+  position: absolute;
+  inset: 0.5rem;
+  border: 1px solid var(--gold);
+  border-radius: 0.5rem;
+  pointer-events: none;
+}
+
+.pattu-frame::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+  border-radius: 0.3rem;
+}
+
+.pattu-petal {
+  position: absolute;
+  top: -5%;
+  width: 0.7rem;
+  height: 0.5rem;
+  border-radius: 80% 10% 80% 10%;
+  background: var(--rose);
+  opacity: 0;
+  animation: pattu-drift var(--drift, 7s) linear var(--delay, 0s) infinite;
+}
+
+@keyframes pattu-drift {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate3d(-1.25rem, 45vh, 0) rotate(120deg);
+  }
+  85% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(1.5rem, 95vh, 0) rotate(240deg);
+    opacity: 0;
+  }
+}
+
+/* The loader and corners animate in CSS: they must play on a slow connection
+   before the page's JavaScript has arrived. */
+.pattu-rise {
+  animation: pattu-rise 0.35s ease-out var(--d, 0ms) both;
+}
+
+@keyframes pattu-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+
+.pattu-corner {
+  animation: pattu-corner 0.4s ease-out both;
+}
+
+.pattu-corner-tl {
+  --cx: -0.75rem;
+  --cy: -0.75rem;
+}
+
+.pattu-corner-tr {
+  --cx: 0.75rem;
+  --cy: -0.75rem;
+}
+
+.pattu-corner-bl {
+  --cx: -0.75rem;
+  --cy: 0.75rem;
+}
+
+.pattu-corner-br {
+  --cx: 0.75rem;
+  --cy: 0.75rem;
+}
+
+@keyframes pattu-corner {
+  from {
+    opacity: 0;
+    transform: translate(var(--cx), var(--cy));
+  }
+}
+
+.pattu-draw {
+  animation: pattu-draw 0.4s ease-out 0.1s both;
+}
+
+@keyframes pattu-draw {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.pattu-press {
+  transition:
+    transform 0.2s ease-out,
+    background-color 0.2s ease-out;
+}
+
+.pattu-press:active {
+  transform: scale(0.97);
+}
+
+.pattu-focus:focus-visible,
+.pattu a:focus-visible,
+.pattu button:focus-visible {
+  outline: 2px solid var(--burgundy);
+  outline-offset: 2px;
+}
+
+/* Tamil is wider than the English type, and wide tracking pulls its letters apart. */
+:root[lang="ta"] .pattu [class*="tracking-"] {
+  letter-spacing: 0.05em;
+}
+
+:root[lang="ta"] .pattu .pattu-button {
+  font-size: 1rem;
+  padding-inline: 1rem;
+}
+
+:root[lang="ta"] .pattu .pattu-cover-details {
+  font-size: 0.82rem;
+}
