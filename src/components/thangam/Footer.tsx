@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Download, Image as ImageIcon, LoaderCircle, MapPin, MessageCircle, Phone, Share2 } from "lucide-react";
 import { m } from "motion/react";
 import { wedding } from "@/data/wedding";
+import { BrandLogo } from "@/components/shared/BrandLogo";
 import { usePreferences } from "@/components/shared/Preferences";
 import { coupleNames, mapsUrl, telUrl, whatsappUrl } from "@/lib/format";
 import { downloadBlob } from "@/lib/pdf";
@@ -110,7 +111,8 @@ export function Footer() {
             </m.span>
             <span className="font-semibold text-[var(--champagne)]">{thangam.badge[lang]}</span>
           </span>
-          <p className="mt-3 text-[0.95rem]">{thangam.collection[lang]}</p>
+          <BrandLogo lang={lang} className="mt-4" />
+          <p className="mt-2 text-[0.95rem]">{thangam.collection[lang]}</p>
           <a href={brand.orderUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center px-2 underline underline-offset-4">
             {ui.orderInvitation[lang]}
           </a>

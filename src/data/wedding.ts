@@ -208,6 +208,8 @@ export const wedding = {
 
   brand: {
     name: { en: "Menaka Invitations", ta: "மேனகா இன்விடேஷன்ஸ்" } as Text,
+    logo: "/shared/menaka-logo.webp",
+    logoAlt: { en: "Menaka Card logo", ta: "மேனகா கார்டு சின்னம்" } as Text,
     /** Where "Order your invitation" goes. A stand-in, like contact.phone. */
     orderUrl: "https://wa.me/910000000000?text=I%20would%20like%20to%20order%20a%20digital%20invitation",
   },
