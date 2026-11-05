@@ -204,7 +204,7 @@ export const wedding = {
   ] as { src: string; alt: Text }[],
 
   /** A single instrumental track. Set to null to remove the music button. */
-  music: { src: "/shared/audio/veena.mp3" as string | null },
+  music: { src: "/shared/audio/premium-1.mp3" as string | null },
 
   brand: {
     name: { en: "Menaka Invitations", ta: "மேனகா இன்விடேஷன்ஸ்" } as Text,
@@ -265,12 +265,12 @@ export const wedding = {
     thanksFrom: "2027-02-05T00:00:00+05:30",
     /** The family's choice from the curated list. It plays first; guests can change it. */
     music: {
-      defaultTrack: "/shared/audio/flute.mp3",
+      defaultTrack: "/shared/audio/premium-1.mp3",
       title: { en: "Choose the music", ta: "இசையைத் தேர்வு செய்யவும்" } as Text,
       tracks: [
-        { src: "/shared/audio/flute.mp3", name: { en: "Flute, Hamsadhwani", ta: "புல்லாங்குழல், ஹம்சத்வனி" } },
-        { src: "/shared/audio/veena.mp3", name: { en: "Veena, Mohanam", ta: "வீணை, மோகனம்" } },
-        { src: "/shared/audio/santoor.mp3", name: { en: "Santoor, Kalyani", ta: "சந்தூர், கல்யாணி" } },
+        { src: "/shared/audio/premium-1.mp3", name: { en: "Song 1", ta: "பாடல் 1" } },
+        { src: "/shared/audio/premium-2.mp3", name: { en: "Song 2", ta: "பாடல் 2" } },
+        { src: "/shared/audio/premium-3.mp3", name: { en: "Song 3", ta: "பாடல் 3" } },
       ] as { src: string; name: Text }[],
     },
     loader: {
